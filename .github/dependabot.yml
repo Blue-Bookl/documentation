@@ -7,6 +7,7 @@ updates:
     directory: /
     schedule:
       interval: daily
+    target-branch: "main"
     allow:
       - dependency-type: direct
     versioning-strategy: increase-if-necessary
@@ -15,27 +16,12 @@ updates:
       prefix-development: chore
     labels:
       - "Dependencies"
-  - package-ecosystem: npm
-    directory: cli/
-    schedule:
-      interval: daily
-    allow:
-      - dependency-type: direct
-    versioning-strategy: increase-if-necessary
-    commit-message:
-      prefix: deps
-      prefix-development: chore
-    labels:
-      - "Dependencies"
-  - package-ecosystem: npm
-    directory: theme/
-    schedule:
-      interval: daily
-    allow:
-      - dependency-type: direct
-    versioning-strategy: increase-if-necessary
-    commit-message:
-      prefix: deps
-      prefix-development: chore
-    labels:
-      - "Dependencies"
+    open-pull-requests-limit: 10
+    groups:
+      dependency-updates:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
